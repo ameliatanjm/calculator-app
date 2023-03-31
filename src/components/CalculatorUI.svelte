@@ -4,6 +4,7 @@
   export let operatorKeys;
   export let numberKeys;
   export let actionKeys;
+  export let allRecords;
   export let handleKeyPress;
 
   const buttons = [
@@ -24,6 +25,13 @@
     { id: numberKeys.eight, value: "8" },
     { id: numberKeys.nine, value: "9" },
   ];
+
+  const getDateTime = (ts) => {
+    const date = new Date(ts);
+    return (
+      date.getHours() + ":" + date.getMinutes() + ", " + date.toDateString()
+    );
+  };
 </script>
 
 <div class="root">
@@ -36,6 +44,15 @@
       <button class={eachButton.id} on:click={() => handleKeyPress(eachButton)}
         >{eachButton.value}</button
       >
+    {/each}
+  </div>
+  <div>
+    <div>{`Previous records (Records are saved after hitting =)`}</div>
+    {#each allRecords as eachRecord}
+      <div>
+        <span>{getDateTime(eachRecord.timeStamp)}</span>
+        <span>{eachRecord.text}</span>
+      </div>
     {/each}
   </div>
 </div>
