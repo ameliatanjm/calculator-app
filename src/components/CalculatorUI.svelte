@@ -1,55 +1,41 @@
 <script>
   export let displayText;
-
-  const operatorKeys = {
-    PLUS: "plus",
-    MINUS: "minus",
-    MULTIPLY: "multiply",
-    DIVIDE: "divide",
-    CLEAR: "clear",
-    EQUAL: "equal",
-  };
-
-  const numberKeys = {
-    ZERO: "zero",
-    ONE: "one",
-    TWO: "two",
-    THREE: "three",
-    FOUR: "four",
-    FIVE: "five",
-    SIX: "six",
-    SEVEN: "seven",
-    EIGHT: "eight",
-    NINE: "nine",
-  };
+  export let totalCount;
+  export let operatorKeys;
+  export let numberKeys;
+  export let actionKeys;
+  export let handleKeyPress;
 
   const buttons = [
-    { id: operatorKeys.PLUS, value: "+" },
-    { id: operatorKeys.MINUS, value: "-" },
-    { id: operatorKeys.MULTIPLY, value: "*" },
-    { id: operatorKeys.DIVIDE, value: "/" },
-    { id: operatorKeys.CLEAR, value: "C" },
-    { id: operatorKeys.EQUAL, value: "=" },
-    { id: numberKeys.ZERO, value: "0" },
-    { id: numberKeys.ONE, value: "1" },
-    { id: numberKeys.TWO, value: "2" },
-    { id: numberKeys.THREE, value: "3" },
-    { id: numberKeys.FOUR, value: "4" },
-    { id: numberKeys.FIVE, value: "5" },
-    { id: numberKeys.SIX, value: "6" },
-    { id: numberKeys.SEVEN, value: "7" },
-    { id: numberKeys.EIGHT, value: "8" },
-    { id: numberKeys.NINE, value: "9" },
+    { id: operatorKeys.plus, value: "+" },
+    { id: operatorKeys.minus, value: "-" },
+    { id: operatorKeys.multiply, value: "*" },
+    { id: operatorKeys.divide, value: "/" },
+    { id: actionKeys.clear, value: "AC" },
+    { id: actionKeys.equal, value: "=" },
+    { id: numberKeys.zero, value: "0" },
+    { id: numberKeys.one, value: "1" },
+    { id: numberKeys.two, value: "2" },
+    { id: numberKeys.three, value: "3" },
+    { id: numberKeys.four, value: "4" },
+    { id: numberKeys.five, value: "5" },
+    { id: numberKeys.six, value: "6" },
+    { id: numberKeys.seven, value: "7" },
+    { id: numberKeys.eight, value: "8" },
+    { id: numberKeys.nine, value: "9" },
   ];
 </script>
 
 <div class="root">
   <div class="display">
-    <span>{displayText}</span>
+    <div>{displayText}</div>
+    <div>{totalCount}</div>
   </div>
   <div class="grid-container">
     {#each buttons as eachButton}
-      <button class={eachButton.id}>{eachButton.value}</button>
+      <button class={eachButton.id} on:click={() => handleKeyPress(eachButton)}
+        >{eachButton.value}</button
+      >
     {/each}
   </div>
 </div>
